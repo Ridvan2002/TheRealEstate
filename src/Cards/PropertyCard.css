@@ -4,7 +4,7 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 15px;
-    max-width: 400px; /* Increased width */
+    max-width: 300px; /* Increased width */
     background-color: white;
     text-align: center;
 }

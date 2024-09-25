@@ -1,7 +1,7 @@
 /* src/property_details/PropertyDetails.css */
 
 .property-details-page {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -14,9 +14,10 @@
 
 .main-image {
     flex: 1;
-    max-width: 780px;
+    max-width: 600px;
     object-fit: cover;
     border-radius: 8px;
+    max-height: 700px;
 }
 
 .image-gallery {
@@ -26,8 +27,8 @@
 }
 
 .gallery-image {
-    width: 400px;
-    height: 200px;
+    width: 380px;
+    height: 150px;
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
@@ -82,7 +83,7 @@
     cursor: pointer;
     display: block;
     margin: 20px auto 0;
-    width: 1200px;
+    width: 1000px;
 }
 
 .buy-button:hover {

@@ -66,10 +66,10 @@ body, html {
 .property-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 0px;
   justify-content: center;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1000px;
 }
 
 /* Example CSS for the search bar */
@@ -84,13 +84,13 @@ body, html {
 }
 .filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust as needed */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust as needed */
   gap: 5px;
   margin-bottom: 60px;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 1130px; /* Same width as property grid */
+  max-width: 930px; /* Same width as property grid */
   margin: 0 auto 10px; /* Center align and add space below */
 }
 
