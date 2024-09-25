@@ -1,0 +1,81 @@
+.list-property-form {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.list-property-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.list-property-form form > div {
+    margin-bottom: 35px;
+}
+
+.list-property-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.list-property-form input,
+.list-property-form select,
+.list-property-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 5px;
+    box-sizing: border-box; /* Include padding and border in the element's width */
+}
+
+.list-property-form textarea {
+    resize: vertical;
+}
+
+.list-property-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.list-property-form button:hover {
+    background-color: #0056b3;
+}
+
+.list-property-form input[type="file"] {
+    padding: 3px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px; /* Adjust gap between fields */
+    width: 100%; /* Ensure the row takes up the full width of the form */
+}
+
+.form-row > div {
+    flex: 1; /* Ensure each field takes up equal space */
+    min-width: 0; /* Prevent fields from shrinking */
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column; /* Stacks the items in a column on smaller screens */
+    }
+}
+
