@@ -10,12 +10,10 @@ function Home({ listings, addToWishlist }) {
         sortBy: '',
     });
 
-    // Helper function to convert price string to number
     const convertPriceToNumber = (price) => {
         return parseInt(price.replace(/[^0-9]/g, ''), 10);
     };
 
-    // Filter and sort listings based on search query and filters
     const filteredListings = listings
         .filter(property => {
             const priceAsNumber = convertPriceToNumber(property.price);
@@ -35,7 +33,7 @@ function Home({ listings, addToWishlist }) {
             } else if (filters.sortBy === 'priceHighToLow') {
                 return convertPriceToNumber(b.price) - convertPriceToNumber(a.price);
             } else if (filters.sortBy === 'newest') {
-                return b.id - a.id; // Assuming `id` correlates with how new the property is
+                return b.id - a.id;
             }
             return 0;
         });
@@ -64,7 +62,6 @@ function Home({ listings, addToWishlist }) {
                 }}
             />
 
-            {/* Filter Options */}
             <div className="filters">
                 <label>
                     Price Range:
@@ -112,7 +109,6 @@ function Home({ listings, addToWishlist }) {
                 </label>
             </div>
 
-            {/* Property Listings */}
             {filteredListings.length > 0 ? (
                 <div className="property-grid">
                     {filteredListings.map((property, index) => (

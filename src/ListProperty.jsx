@@ -45,7 +45,7 @@ function ListProperty({ addListing }) {
         const title = `${formData.bedrooms} Bedroom ${formData.propertyType}`;
 
         const newListing = {
-            id: Date.now(),  // Generate a unique ID for the new listing
+            id: Date.now(),
             title: title,
             description: formData.description,
             price: formData.price,
@@ -67,7 +67,6 @@ function ListProperty({ addListing }) {
         <div className="list-property-form">
             <h1>List Your Property</h1>
             <form onSubmit={handleSubmit}>
-                {/* Address, Property Type */}
                 <div>
                     <label>Address:</label>
                     <input
@@ -95,7 +94,6 @@ function ListProperty({ addListing }) {
                     </div>
                 </div>
 
-                {/* Bedrooms, Bathrooms, Square Footage */}
                 <div className="form-row">
                     <div>
                         <label>Bedrooms:</label>
@@ -126,7 +124,6 @@ function ListProperty({ addListing }) {
                     </div>
                 </div>
 
-                {/* Price, Description, Images */}
                 <div>
                     <label>Price:</label>
                     <input

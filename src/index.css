@@ -1,11 +1,9 @@
-/* General Reset */
 body, html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Navigation Bar Styling */
 .navbar {
   background-color: #0077b5;
   padding: 10px 0;
@@ -17,7 +15,6 @@ body, html {
   width: 100%;
 }
 
-/* Styling for the List inside the Navbar */
 .nav-links {
   list-style-type: none;
   margin: 0;
@@ -26,12 +23,10 @@ body, html {
   justify-content: space-around;
 }
 
-/* Styling for the individual list items */
 .nav-links li {
   display: inline;
 }
 
-/* Styling for the links */
 .nav-links li a {
   color: white;
   text-decoration: none;
@@ -42,13 +37,11 @@ body, html {
   transition: background-color 0.3s ease;
 }
 
-/* Hover effect for the links */
 .nav-links li a:hover {
   background-color: #005582;
   border-radius: 5px;
 }
 
-/* Wishlist title styling */
 .wishlist-page h1 {
   font-size: 2rem;
   color: #333;
@@ -56,7 +49,6 @@ body, html {
   margin-bottom: 20px;
 }
 
-/* Home page and general property grid styling */
 .home-page,
 .wishlist-page {
   padding: 20px;
@@ -72,7 +64,6 @@ body, html {
   max-width: 1000px;
 }
 
-/* Example CSS for the search bar */
 .home-page input[type="text"] {
   padding: 10px;
   margin-bottom: 20px;
@@ -90,8 +81,8 @@ body, html {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 850px; /* Same width as property grid */
-  margin: 0 auto 0px; /* Center align and add space below */
+  max-width: 850px; 
+  margin: 0 auto 0px; 
 }
 
 .filters label {

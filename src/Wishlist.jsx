@@ -12,7 +12,7 @@ function Wishlist({ wishlist, removeFromWishlist }) {
                             key={index}
                             property={property}
                             removeFromWishlist={removeFromWishlist}
-                            isWishlist={true} // In the wishlist, so show the "Remove" button
+                            isWishlist={true} 
                         />
                     ))}
                 </div>

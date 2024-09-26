@@ -6,9 +6,9 @@ function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist 
     const navigate = useNavigate();
 
     const handleAddToWishlist = () => {
-        if (!isWishlist) { // Check to avoid adding duplicates
+        if (!isWishlist) { 
             addToWishlist(property);
-            navigate('/wishlist'); // Redirect to wishlist
+            navigate('/wishlist'); 
         }
     };
 
@@ -20,7 +20,7 @@ function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist 
                 <p>{property.address}</p>
                 <p><strong>Price:</strong> {property.price}</p>
                 <div className="property-actions">
-                    <Link to={`/property/${property.id}`} className="btn-primary">See details</Link> {/* Link to PropertyDetails page */}
+                    <Link to={`/property/${property.id}`} className="btn-primary">Details</Link>
                     {isWishlist ? (
                         <button className="btn-secondary btn-remove-from-wishlist" onClick={() => removeFromWishlist(property)}>
                             Remove

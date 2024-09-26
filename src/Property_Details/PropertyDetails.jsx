@@ -6,7 +6,7 @@ function PropertyDetails({ listings }) {
     const { id } = useParams();
     const property = listings.find((listing) => listing.id === parseInt(id));
     const [visibleImages, setVisibleImages] = useState(0);
-    const [lightboxImage, setLightboxImage] = useState(null); // For lightbox effect
+    const [lightboxImage, setLightboxImage] = useState(null);
 
     if (!property) {
         return <p>Property not found.</p>;
@@ -50,7 +50,7 @@ function PropertyDetails({ listings }) {
                                 src={imgSrc} 
                                 alt={`${property.title} - ${index + 1}`} 
                                 className="gallery-image"
-                                onClick={() => openLightbox(imgSrc)} // Open lightbox on click
+                                onClick={() => openLightbox(imgSrc)}
                             />
                         ))}
                     </div>
@@ -71,7 +71,6 @@ function PropertyDetails({ listings }) {
             </div>
             <button className="buy-button">Buy Now</button>
 
-            {/* Lightbox implementation */}
             {lightboxImage && (
                 <div className="lightbox" onClick={closeLightbox}>
                     <img src={lightboxImage} alt="Enlarged view" className="lightbox-image" />
