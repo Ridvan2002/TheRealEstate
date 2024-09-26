@@ -46,8 +46,6 @@ function Home({ listings, addToWishlist }) {
     return (
         <div className="home-page">
             <h1>Find Your Dream Home</h1>
-
-            {/* Search Bar */}
             <input
                 type="text"
                 placeholder="Search properties..."

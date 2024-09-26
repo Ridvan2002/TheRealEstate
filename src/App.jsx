@@ -4,7 +4,7 @@ import Home from './Home';
 import ListProperty from './ListProperty';
 import Wishlist from './Wishlist';
 import PropertyDetails from './Property_Details/PropertyDetails'; 
-
+import Buy from './Buy';
 
 function App() {
     
@@ -220,6 +220,9 @@ function App() {
                   <Route path="/wishlist" element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />} />
                   <Route path="/list-property" element={<ListProperty addListing={addListing} />} />
                   <Route path="/property/:id" element={<PropertyDetails listings={listings} />} />
+                  <Route path="/buy/:id" element={<Buy />} /> {/* Add this line */}
+
+                  
               </Routes>
           </div>
       </Router>

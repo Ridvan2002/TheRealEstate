@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './PropertyDetails.css';
 
 function PropertyDetails({ listings }) {
     const { id } = useParams();
+    const navigate = useNavigate(); // Hook for navigation
     const property = listings.find((listing) => listing.id === parseInt(id));
     const [visibleImages, setVisibleImages] = useState(0);
     const [lightboxImage, setLightboxImage] = useState(null);
@@ -30,6 +31,10 @@ function PropertyDetails({ listings }) {
 
     const closeLightbox = () => {
         setLightboxImage(null);
+    };
+
+    const handleBuyNow = () => {
+        navigate(`/buy/${property.id}`, { state: { property } });
     };
 
     return (
@@ -69,7 +74,7 @@ function PropertyDetails({ listings }) {
                 <p><strong>Square Footage:</strong> {property.squareFootage} sq ft</p>
                 <p><strong>Description:</strong> {property.description}</p>
             </div>
-            <button className="buy-button">Buy Now</button>
+            <button className="buy-button" onClick={handleBuyNow}>Buy Now</button>
 
             {lightboxImage && (
                 <div className="lightbox" onClick={closeLightbox}>
