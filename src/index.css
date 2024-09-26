@@ -90,15 +90,15 @@ body, html {
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 930px; /* Same width as property grid */
-  margin: 0 auto 10px; /* Center align and add space below */
+  max-width: 850px; /* Same width as property grid */
+  margin: 0 auto 0px; /* Center align and add space below */
 }
 
 .filters label {
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 17px;
   color: #333;
 }
 
