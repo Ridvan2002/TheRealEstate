@@ -1,7 +1,7 @@
 # TheRealEstate
 TheRealEstate is a web application that allows users to view, list, buy, and purchase properties. It features user authentication, a wishlist functionality, and a purchase flow. The app is built with React.
 
-![TheRealEstate](./public/assets/house.png)
+![TheRealEstate]
 
 ## Features
 - **Property Listings**: Users can browse available properties, view details, and add them to their wishlist.
