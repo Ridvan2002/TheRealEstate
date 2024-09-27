@@ -15,115 +15,89 @@
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
     position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
 
 .auth-modal h2 {
     text-align: center;
-    font-size: 1.5rem;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
-.auth-tabs {
+.auth-header {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
 }
 
-.auth-tabs button {
-    padding: 10px 20px;
-    background: none;
+.auth-header button {
+    flex: 1;
+    padding: 10px;
     border: none;
-    border-bottom: 2px solid transparent;
-    font-size: 1rem;
+    background: none;
+    font-size: 16px;
     cursor: pointer;
+    border-bottom: 2px solid transparent;
 }
 
-.auth-tabs button.active {
-    border-bottom: 2px solid #007bff;
+.auth-header .active {
+    border-bottom: 2px solid #0077b5;
     font-weight: bold;
 }
 
-.auth-modal form {
+.auth-form {
     display: flex;
     flex-direction: column;
 }
 
-.auth-modal label {
-    font-weight: bold;
+.auth-form label {
     margin-bottom: 5px;
+    font-size: 14px;
 }
 
-.auth-modal input {
+.auth-form input {
     padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
     border: 1px solid #ccc;
-    font-size: 1rem;
+    border-radius: 4px;
 }
 
-.auth-modal button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    border: none;
-    background-color: #007bff;
+.auth-submit {
+    padding: 10px;
+    background-color: #0077b5;
     color: white;
-    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    font-size: 16px;
 }
 
-.auth-modal button[type="submit"]:hover {
-    background-color: #0056b3;
+.auth-submit:hover {
+    background-color: #005fa3;
 }
 
 .forgot-password {
     text-align: center;
-    display: block;
     margin-top: 10px;
-    color: #007bff;
+}
+
+.forgot-password a {
+    color: #0077b5;
     text-decoration: none;
 }
 
-.forgot-password:hover {
+.forgot-password a:hover {
     text-decoration: underline;
 }
 
-.social-login {
-    text-align: center;
-    margin-top: 20px;
+.divider {
+    display: none;
 }
 
-.social-login p {
-    margin-bottom: 10px;
-    color: #555;
-}
-
-.social-btn {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.social-btn.apple {
-    background-color: #000;
-    color: white;
-}
-
-.social-btn.facebook {
-    background-color: #3b5998;
-    color: white;
-}
-
-.social-btn.google {
-    background-color: #db4437;
-    color: white;
-}
+/* Removed the social-login section */

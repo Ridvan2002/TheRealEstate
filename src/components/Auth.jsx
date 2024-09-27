@@ -12,12 +12,22 @@ function Auth({ isOpen, onClose }) {
     e.preventDefault();
 
     if (isLogin) {
-      login(email, password);
+      login(email, password, onClose); // Pass onClose to close modal on success
     } else {
-      register(email, password);
+      register(email, password, onClose); // Pass onClose to close modal on success
     }
 
-    onClose(); // Close the modal after login or registration
+    // Clear the form fields after submission
+    setEmail('');
+    setPassword('');
+  };
+
+  const handleToggle = () => {
+    setIsLogin(!isLogin);
+
+    // Clear the form fields when toggling between login and register
+    setEmail('');
+    setPassword('');
   };
 
   if (!isOpen) return null;
@@ -25,8 +35,23 @@ function Auth({ isOpen, onClose }) {
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <h2>{isLogin ? 'Sign in' : 'New account'}</h2>
-        <form onSubmit={handleSubmit}>
+        <h2>Welcome to YourApp</h2>
+        <div className="auth-header">
+          <button 
+            onClick={handleToggle} 
+            className={isLogin ? 'active' : ''}
+          >
+            Sign in
+          </button>
+          <button 
+            onClick={handleToggle} 
+            className={!isLogin ? 'active' : ''}
+          >
+            New account
+          </button>
+        </div>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <label>Email</label>
           <input
             type="email"
             value={email}
@@ -34,6 +59,7 @@ function Auth({ isOpen, onClose }) {
             placeholder="Enter email"
             required
           />
+          <label>Password</label>
           <input
             type="password"
             value={password}
@@ -41,14 +67,15 @@ function Auth({ isOpen, onClose }) {
             placeholder="Enter password"
             required
           />
-          <button type="submit">{isLogin ? 'Sign in' : 'Register'}</button>
+          <button type="submit" className="auth-submit">
+            {isLogin ? 'Sign in' : 'Register'}
+          </button>
         </form>
-        <p>
-          {isLogin ? "Don't have an account?" : 'Already have an account?'}{' '}
-          <span onClick={() => setIsLogin(!isLogin)}>
-            {isLogin ? 'Register here' : 'Login here'}
-          </span>
-        </p>
+        {isLogin && (
+          <div className="forgot-password">
+            <a href="#">Forgot your password?</a>
+          </div>
+        )}
       </div>
     </div>
   );

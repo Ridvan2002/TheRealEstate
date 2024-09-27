@@ -227,7 +227,7 @@ function App() {
 }
 
 function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath }) {
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
 
     const addListing = (newListing) => {
@@ -282,7 +282,18 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModa
                             }
                         }}>Sell</a>
                     </li>
+                    <li className="nav-sign-in">
+                        {isLoggedIn ? (
+                            <button onClick={logout} className="btn-signout">Sign out</button>
+                        ) : (
+                            <button onClick={() => handleOpenAuthModal()} className="btn-signin">Sign in</button>
+                        )}
+                    </li>
                 </ul>
+                <div className="theTitle">
+                    <img src="/house.png" alt="house icon" className="title-icon" />
+                    <span className="title-text">TheRealEstate</span>
+                </div>
             </nav>
             <Routes>
                 <Route 
