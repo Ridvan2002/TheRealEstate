@@ -12,20 +12,16 @@ function Auth({ isOpen, onClose }) {
     e.preventDefault();
 
     if (isLogin) {
-      login(email, password, onClose); // Pass onClose to close modal on success
+      login(email, password, onClose);
     } else {
-      register(email, password, onClose); // Pass onClose to close modal on success
+      register(email, password, onClose);
     }
-
-    // Clear the form fields after submission
     setEmail('');
     setPassword('');
   };
 
   const handleToggle = () => {
     setIsLogin(!isLogin);
-
-    // Clear the form fields when toggling between login and register
     setEmail('');
     setPassword('');
   };
@@ -35,7 +31,11 @@ function Auth({ isOpen, onClose }) {
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <h2>Welcome to YourApp</h2>
+        <div className="auth-title">
+          <span className="welcome-text">Welcome To</span>
+          <img src="/house.png" alt="house icon" className="title-icon" />
+          <h2 className="title-text">TheRealEstate</h2>
+        </div>
         <div className="auth-header">
           <button 
             onClick={handleToggle} 
