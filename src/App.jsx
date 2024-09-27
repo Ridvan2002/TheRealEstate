@@ -13,7 +13,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 function App() {
     
     const isProduction = process.env.NODE_ENV === 'production';
-    const basePath = isProduction ? '/PropertyListings' : '';
+    const basePath = isProduction ? '/TheRealEstate' : '';
   
     const [listings, setListings] = useState([
       {

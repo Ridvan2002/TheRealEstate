@@ -10,7 +10,7 @@ function Auth({ isOpen, onClose }) {
 
   // Define basePath here as well
   const isProduction = process.env.NODE_ENV === 'production';
-  const basePath = isProduction ? '/PropertyListings' : '';
+  const basePath = isProduction ? '/TheRealEstate' : '';
 
   const handleSubmit = (e) => {
     e.preventDefault();
