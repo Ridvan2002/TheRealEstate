@@ -1,5 +1,5 @@
 import React from 'react';
-import PropertyCard from './Cards/PropertyCard';
+import PropertyCard from './PropertyCard';
 
 function Wishlist({ wishlist, removeFromWishlist }) {
     return (

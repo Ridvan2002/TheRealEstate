@@ -1,24 +1,37 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './PropertyDetails.css';
+import { useAuth } from './context/AuthContext';
+import './styles/PropertyDetails.css';
 
-function PropertyDetails({ listings }) {
+function PropertyDetails({ listings, handleOpenAuthModal, onBuy }) {
     const { id } = useParams();
-    const navigate = useNavigate(); // Hook for navigation
     const property = listings.find((listing) => listing.id === parseInt(id));
-    const [visibleImages, setVisibleImages] = useState(0);
-    const [lightboxImage, setLightboxImage] = useState(null);
+    const { isLoggedIn } = useAuth();
+    const navigate = useNavigate();
+
+    const [visibleImages, setVisibleImages] = useState(0); // State to track visible images
+    const [lightboxImage, setLightboxImage] = useState(null); // State for lightbox image
 
     if (!property) {
         return <p>Property not found.</p>;
     }
 
+    const handleBuyNow = () => {
+        if (!isLoggedIn) {
+            handleOpenAuthModal(`/buy/${property.id}`);
+        } else {
+            onBuy(property);
+        }
+    };
+
+    // Function to show the next image in the gallery
     const showNextImage = () => {
         if (visibleImages < property.additionalImages.length - 3) {
             setVisibleImages(visibleImages + 1);
         }
     };
 
+    // Function to show the previous image in the gallery
     const showPreviousImage = () => {
         if (visibleImages > 0) {
             setVisibleImages(visibleImages - 1);
@@ -31,10 +44,6 @@ function PropertyDetails({ listings }) {
 
     const closeLightbox = () => {
         setLightboxImage(null);
-    };
-
-    const handleBuyNow = () => {
-        navigate(`/buy/${property.id}`, { state: { property } });
     };
 
     return (

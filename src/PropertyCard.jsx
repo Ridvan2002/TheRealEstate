@@ -1,14 +1,18 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './PropertyCard.css';
+import { useAuth } from './context/AuthContext'; // Import useAuth
+import './styles/PropertyCard.css';
 
-function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist }) {
+function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist, handleOpenAuthModal }) { // Accept handleOpenAuthModal as a prop
     const navigate = useNavigate();
+    const { isLoggedIn } = useAuth(); // Use the useAuth hook
 
     const handleAddToWishlist = () => {
-        if (!isWishlist) { 
+        if (!isLoggedIn) {
+            handleOpenAuthModal('/wishlist'); // Trigger the modal to open if not logged in
+        } else {
             addToWishlist(property);
-            navigate('/wishlist'); 
+            navigate('/wishlist');
         }
     };
 

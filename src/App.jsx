@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import Home from './Home'; 
 import ListProperty from './ListProperty';
 import Wishlist from './Wishlist';
-import PropertyDetails from './Property_Details/PropertyDetails'; 
+import PropertyDetails from './PropertyDetails'; 
 import Buy from './Buy';
+import PrivateRoute from './components/PrivateRoute';
+import Auth from './components/Auth'; 
+import { AuthProvider, useAuth } from './context/AuthContext'; 
+
 
 function App() {
     
@@ -187,8 +191,9 @@ function App() {
       },
     ]);
   
-
     const [wishlist, setWishlist] = useState([]);
+    const [isAuthModalOpen, setAuthModalOpen] = useState(false);
+    const [redirectPath, setRedirectPath] = useState('/');
 
     const addToWishlist = (property) => {
         if (!wishlist.some(item => item.id === property.id)) {
@@ -196,37 +201,134 @@ function App() {
         }
     };
 
-    const removeFromWishlist = (property) => {
-        setWishlist(wishlist.filter(item => item.id !== property.id));
+    const handleOpenAuthModal = (path) => {
+        setRedirectPath(path);
+        setAuthModalOpen(true);
     };
 
-    const addListing = (newListing) => {
-        setListings(prevListings => [...prevListings, newListing]);
-    };
-
+    const handleCloseAuthModal = () => setAuthModalOpen(false);
 
     return (
-      <Router basename={process.env.NODE_ENV === 'production' ? '/PropertyListings' : ''}>
-          <div>
-              <nav className="navbar">
-                  <ul className="nav-links">
-                      <li><Link to="/">Home</Link></li>
-                      <li><Link to="/wishlist">Wishlist</Link></li>
-                      <li><Link to="/list-property">Sell</Link></li>
-                  </ul>
-              </nav>
-              <Routes>
-                  <Route path="/" element={<Home listings={listings} addToWishlist={addToWishlist} />} />
-                  <Route path="/wishlist" element={<Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />} />
-                  <Route path="/list-property" element={<ListProperty addListing={addListing} />} />
-                  <Route path="/property/:id" element={<PropertyDetails listings={listings} />} />
-                  <Route path="/buy/:id" element={<Buy />} /> {/* Add this line */}
+        <AuthProvider>
+            <Router basename={basePath}>
+                <AppContent
+                    listings={listings}
+                    setListings={setListings} // Pass setListings as a prop
+                    wishlist={wishlist}
+                    addToWishlist={addToWishlist}
+                    isAuthModalOpen={isAuthModalOpen}
+                    handleOpenAuthModal={handleOpenAuthModal}
+                    handleCloseAuthModal={handleCloseAuthModal}
+                    redirectPath={redirectPath}
+                />
+            </Router>
+        </AuthProvider>
+    );
+}
 
-                  
-              </Routes>
-          </div>
-      </Router>
-  );
+function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath }) {
+    const { isLoggedIn } = useAuth();
+    const navigate = useNavigate();
+
+    const addListing = (newListing) => {
+        setListings((prevListings) => [...prevListings, newListing]);
+    };
+
+    const handleAddToWishlist = (property) => {
+        if (!isLoggedIn) {
+            handleOpenAuthModal('/');
+        } else {
+            addToWishlist(property);
+        }
+    };
+
+    const handleBuyNow = (property) => {
+        if (!isLoggedIn) {
+            handleOpenAuthModal(`/buy/${property.id}`);
+        } else {
+            navigate(`/buy/${property.id}`, { state: { property } });
+        }
+    };
+
+    const handleCloseModalAndRedirect = () => {
+        handleCloseAuthModal();
+        if (isLoggedIn) {
+            navigate(redirectPath);
+        }
+    };
+
+    return (
+        <div>
+            <nav className="navbar">
+                <ul className="nav-links">
+                    <li><Link to="/">Home</Link></li>
+                    <li>
+                        <a href="#" onClick={(e) => {
+                            e.preventDefault();
+                            if (!isLoggedIn) {
+                                handleOpenAuthModal('/wishlist');
+                            } else {
+                                navigate('/wishlist');
+                            }
+                        }}>Wishlist</a>
+                    </li>
+                    <li>
+                        <a href="#" onClick={(e) => {
+                            e.preventDefault();
+                            if (!isLoggedIn) {
+                                handleOpenAuthModal('/list-property');
+                            } else {
+                                navigate('/list-property');
+                            }
+                        }}>Sell</a>
+                    </li>
+                </ul>
+            </nav>
+            <Routes>
+                <Route 
+                    path="/" 
+                    element={<Home 
+                                listings={listings} 
+                                addToWishlist={handleAddToWishlist} 
+                                handleOpenAuthModal={handleOpenAuthModal}
+                             />} 
+                />
+                <Route 
+                    path="/property/:id" 
+                    element={<PropertyDetails 
+                                listings={listings} 
+                                onBuy={handleBuyNow} 
+                                handleOpenAuthModal={handleOpenAuthModal}
+                             />} 
+                />
+                <Route 
+                    path="/wishlist" 
+                    element={
+                        <PrivateRoute openAuthModal={handleOpenAuthModal}>
+                            <Wishlist wishlist={wishlist} />
+                        </PrivateRoute>
+                    } 
+                />
+                <Route 
+                    path="/list-property" 
+                    element={
+                        <PrivateRoute openAuthModal={handleOpenAuthModal}>
+                            <ListProperty addListing={addListing} /> {/* Pass addListing as a prop */}
+                        </PrivateRoute>
+                    } 
+                />
+                <Route 
+                    path="/buy/:id" 
+                    element={
+                        <PrivateRoute openAuthModal={handleOpenAuthModal}>
+                            <Buy />
+                        </PrivateRoute>
+                    } 
+                />
+            </Routes>
+            <Auth isOpen={isAuthModalOpen} onClose={handleCloseModalAndRedirect} />
+        </div>
+    );
 }
 
 export default App;

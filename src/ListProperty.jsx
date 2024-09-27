@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ListProperty.css';
+import './styles/ListProperty.css';
 import { useNavigate } from 'react-router-dom';
 
 function ListProperty({ addListing }) {
