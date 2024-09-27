@@ -2,7 +2,7 @@
 TheRealEstate is a web application that allows users to view, list, buy, and purchase properties. It features user authentication, a wishlist functionality, and a purchase flow. The app is built with React.
 
 ## Live Demo
-Check out the live version of the project [here](https://ridvan2002.github.io/PropertyListings).
+Check out the live version of the project [here](https://ridvan2002.github.io/TheRealEstate).
 
 ## Features
 - **Property Listings**: Users can browse available properties, view details, and add them to their wishlist.
@@ -33,7 +33,7 @@ The following documentation files are included in the project:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/RealEstate.git
+    git clone https://github.com/your-username/TheRealEstate.git
     cd RealEstate
     ```
 
