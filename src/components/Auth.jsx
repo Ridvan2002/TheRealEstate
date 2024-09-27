@@ -8,6 +8,10 @@ function Auth({ isOpen, onClose }) {
   const [password, setPassword] = useState('');
   const { login, register } = useAuth();
 
+  // Define basePath here as well
+  const isProduction = process.env.NODE_ENV === 'production';
+  const basePath = isProduction ? '/PropertyListings' : '';
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -33,7 +37,7 @@ function Auth({ isOpen, onClose }) {
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
         <div className="auth-title">
           <span className="welcome-text">Welcome To</span>
-          <img src="/house.png" alt="house icon" className="title-icon" />
+          <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
           <h2 className="title-text">TheRealEstate</h2>
         </div>
         <div className="auth-header">

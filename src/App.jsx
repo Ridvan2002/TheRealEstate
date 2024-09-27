@@ -213,20 +213,21 @@ function App() {
             <Router basename={basePath}>
                 <AppContent
                     listings={listings}
-                    setListings={setListings} // Pass setListings as a prop
+                    setListings={setListings}
                     wishlist={wishlist}
                     addToWishlist={addToWishlist}
                     isAuthModalOpen={isAuthModalOpen}
                     handleOpenAuthModal={handleOpenAuthModal}
                     handleCloseAuthModal={handleCloseAuthModal}
                     redirectPath={redirectPath}
+                    basePath={basePath} 
                 />
             </Router>
         </AuthProvider>
     );
 }
 
-function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath }) {
+function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath, basePath }) {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
 
@@ -291,7 +292,7 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModa
                     </li>
                 </ul>
                 <div className="theTitle">
-                    <img src="/house.png" alt="house icon" className="title-icon" />
+                    <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
                     <span className="title-text">TheRealEstate</span>
                 </div>
             </nav>
@@ -324,7 +325,7 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModa
                     path="/list-property" 
                     element={
                         <PrivateRoute openAuthModal={handleOpenAuthModal}>
-                            <ListProperty addListing={addListing} /> {/* Pass addListing as a prop */}
+                            <ListProperty addListing={addListing} />
                         </PrivateRoute>
                     } 
                 />
