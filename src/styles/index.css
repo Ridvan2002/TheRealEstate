@@ -5,7 +5,7 @@ body, html {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #333;
   text-align: center;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Consistent font family */
@@ -13,7 +13,7 @@ h1 {
 
 .navbar {
   background-color: #0077b5;
-  padding: 10px 0;
+  padding: 8px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +21,7 @@ h1 {
   top: 0;
   z-index: 1000;
   width: 100%;
-  position: relative; /* Add this */
+  position: relative;
 }
 
 .nav-links {
@@ -48,7 +48,7 @@ h1 {
 }
 
 .title-text {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: white;
 }
@@ -67,7 +67,7 @@ h1 {
   color: white;
   text-decoration: none;
   padding: 10px 20px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
   background-color: #0077b5;
   border: none;
@@ -88,15 +88,15 @@ h1 {
 
 
 .wishlist-page h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #333;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .home-page,
 .wishlist-page {
-  padding: 20px;
+  padding: 5px;
   text-align: center;
 }
 
@@ -121,10 +121,10 @@ h1 {
 
 .filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust as needed */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 10fr));
   gap: 5px;
   margin-bottom: 60px;
-  padding: 20px;
+  padding: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
   max-width: 850px; 
@@ -135,16 +135,16 @@ h1 {
   display: flex;
   flex-direction: column;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 15px;
   color: #333;
 }
 
 .filters select {
   padding: 8px;
-  font-size: 18px;
+  font-size: 13px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .purchase-confirmation-container {

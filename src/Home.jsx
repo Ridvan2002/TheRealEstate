@@ -45,7 +45,7 @@ function Home({ listings, addToWishlist, handleOpenAuthModal }) { // Added handl
 
     return (
         <div className="home-page">
-            <h1>Find Your Dream Home</h1>
+            <h1>Find Your Dream Home Today!</h1>
             <input
                 type="text"
                 placeholder="Search properties..."

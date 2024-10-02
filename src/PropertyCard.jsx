@@ -1,19 +1,23 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from './context/AuthContext'; // Import useAuth
+import { useAuth } from './context/AuthContext'; 
 import './styles/PropertyCard.css';
 
-function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist, handleOpenAuthModal }) { // Accept handleOpenAuthModal as a prop
+function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist, handleOpenAuthModal }) {
     const navigate = useNavigate();
-    const { isLoggedIn } = useAuth(); // Use the useAuth hook
+    const { isLoggedIn } = useAuth(); 
 
     const handleAddToWishlist = () => {
         if (!isLoggedIn) {
-            handleOpenAuthModal('/wishlist'); // Trigger the modal to open if not logged in
+            handleOpenAuthModal('/wishlist');
         } else {
             addToWishlist(property);
             navigate('/wishlist');
         }
+    };
+
+    const handleRemoveFromWishlist = () => {
+        removeFromWishlist(property);
     };
 
     return (
@@ -26,7 +30,7 @@ function PropertyCard({ property, addToWishlist, removeFromWishlist, isWishlist,
                 <div className="property-actions">
                     <Link to={`/property/${property.id}`} className="btn-primary">Details</Link>
                     {isWishlist ? (
-                        <button className="btn-secondary btn-remove-from-wishlist" onClick={() => removeFromWishlist(property)}>
+                        <button className="btn-secondary btn-remove-from-wishlist" onClick={handleRemoveFromWishlist}>
                             Remove
                         </button>
                     ) : (

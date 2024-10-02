@@ -201,6 +201,10 @@ function App() {
         }
     };
 
+    const removeFromWishlist = (property) => {
+        setWishlist(prevWishlist => prevWishlist.filter(item => item.id !== property.id));
+    };
+
     const handleOpenAuthModal = (path) => {
         setRedirectPath(path);
         setAuthModalOpen(true);
@@ -216,18 +220,20 @@ function App() {
                     setListings={setListings}
                     wishlist={wishlist}
                     addToWishlist={addToWishlist}
+                    removeFromWishlist={removeFromWishlist}
+                    setWishlist={setWishlist}
                     isAuthModalOpen={isAuthModalOpen}
                     handleOpenAuthModal={handleOpenAuthModal}
                     handleCloseAuthModal={handleCloseAuthModal}
                     redirectPath={redirectPath}
-                    basePath={basePath} 
+                    basePath={basePath}
                 />
             </Router>
         </AuthProvider>
     );
 }
 
-function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath, basePath }) {
+function AppContent({ listings, setListings, wishlist, addToWishlist, removeFromWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath, basePath }) {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
 
@@ -237,7 +243,7 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModa
 
     const handleAddToWishlist = (property) => {
         if (!isLoggedIn) {
-            handleOpenAuthModal('/');
+            handleOpenAuthModal('/wishlist');
         } else {
             addToWishlist(property);
         }
@@ -317,9 +323,9 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, isAuthModa
                     path="/wishlist" 
                     element={
                         <PrivateRoute openAuthModal={handleOpenAuthModal}>
-                            <Wishlist wishlist={wishlist} />
+                            <Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />
                         </PrivateRoute>
-                    } 
+                    }
                 />
                 <Route 
                     path="/list-property" 
