@@ -4,11 +4,13 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 27px;
-    max-width: 300px;
     background-color: white;
     text-align: center;
+    transition: max-width 0.3s ease;
+    max-width: 100%; /* Ensures it fills the grid container */
 }
 
+/* Adjusting image height for responsive design */
 .property-image {
     width: 100%;
     height: 200px;
@@ -34,11 +36,12 @@
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
+    gap: 2px; /* Optional: Adds space between buttons */
 }
 
 .btn-primary {
-    padding: 10px 10px;
-    text-decoration: none; 
+    padding: 10px 5px;
+    text-decoration: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.0rem;
@@ -75,12 +78,65 @@
     background-color: #c82333;
 }
 
+/* Responsive grid layout for property cards */
 .property-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     justify-content: center;
     margin: 0 auto;
-    max-width: 1000px;
     padding: 0px;
+    width: 100%;
+}
+
+/* Specific styles for screen widths below 768px */
+@media (max-width: 768px) {
+    .property-card {
+        max-width: 90%; /* Allows card to shrink on smaller screens */
+        margin: 10px auto; /* Centers card on smaller screens */
+    }
+    
+    .property-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .property-details p {
+        font-size: 1.0rem;
+    }
+
+    .property-actions {
+        flex-direction: column; /* Stacks buttons vertically on smaller screens */
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 0px;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Further adjustments for extra small screens (below 425px) */
+@media (max-width: 425px) {
+    .property-card {
+        max-width: 350px; /* Ensures it doesn't exceed 350px on very small screens */
+    }
+
+    .property-details h2 {
+        font-size: 1.2rem;
+    }
+
+    .property-details p {
+        font-size: 1.0rem;
+    }
+
+    .property-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        margin-top: 10px;
+    }
 }

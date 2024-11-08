@@ -236,6 +236,18 @@ function App() {
 function AppContent({ listings, setListings, wishlist, addToWishlist, removeFromWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath, basePath }) {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
+    const [isMenuOpen, setMenuOpen] = useState(false); // State to control the menu visibility
+
+    const toggleMenu = () => setMenuOpen(!isMenuOpen);
+
+    const handleMenuLinkClick = (path, requiresAuth) => {
+        setMenuOpen(false); // Close the menu on link click
+        if (requiresAuth && !isLoggedIn) {
+            handleOpenAuthModal(path);
+        } else {
+            navigate(path);
+        }
+    };
 
     const addListing = (newListing) => {
         setListings((prevListings) => [...prevListings, newListing]);
@@ -267,28 +279,24 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
     return (
         <div>
             <nav className="navbar">
-                <ul className="nav-links">
-                    <li><Link to="/">Home</Link></li>
-                    <li>
-                        <a href="#" onClick={(e) => {
-                            e.preventDefault();
-                            if (!isLoggedIn) {
-                                handleOpenAuthModal('/wishlist');
-                            } else {
-                                navigate('/wishlist');
-                            }
-                        }}>Wishlist</a>
-                    </li>
-                    <li>
-                        <a href="#" onClick={(e) => {
-                            e.preventDefault();
-                            if (!isLoggedIn) {
-                                handleOpenAuthModal('/list-property');
-                            } else {
-                                navigate('/list-property');
-                            }
-                        }}>Sell</a>
-                    </li>
+
+                <div className="theTitle">
+                    <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
+                    <span className="title-text">TheRealEstate</span>
+                </div>
+
+                {/* Hamburger icon for mobile */}
+                <button className="hamburger" onClick={toggleMenu}>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                </button>
+
+                {/* Nav links, visible based on isMenuOpen */}
+                <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+                    <li><Link to="/" onClick={() => handleMenuLinkClick('/')}>Home</Link></li>
+                    <li><a href="#" onClick={(e) => { e.preventDefault(); handleMenuLinkClick('/wishlist', true); }}>Wishlist</a></li>
+                    <li><a href="#" onClick={(e) => { e.preventDefault(); handleMenuLinkClick('/list-property', true); }}>Sell</a></li>
                     <li className="nav-sign-in">
                         {isLoggedIn ? (
                             <button onClick={logout} className="btn-signout">Sign out</button>
@@ -297,9 +305,12 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
                         )}
                     </li>
                 </ul>
-                <div className="theTitle">
-                    <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
-                    <span className="title-text">TheRealEstate</span>
+                <div className="nav-sign-in-large">
+                    {isLoggedIn ? (
+                        <button onClick={logout} className="btn-signout">Sign out</button>
+                    ) : (
+                        <button onClick={() => handleOpenAuthModal()} className="btn-signin">Sign in</button>
+                    )}
                 </div>
             </nav>
             <Routes>
