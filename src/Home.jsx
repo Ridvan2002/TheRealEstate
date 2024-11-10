@@ -47,17 +47,11 @@ function Home({ listings, addToWishlist, handleOpenAuthModal }) { // Added handl
         <div className="home-page">
             <h1>Find Your Dream Home Today!</h1>
             <input
-                type="text"
-                placeholder="Search properties..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                    padding: '10px',
-                    marginBottom: '20px',
-                    fontSize: '16px',
-                    width: '100%',
-                    maxWidth: '500px'
-                }}
+    type="text"
+    placeholder="Search properties..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="search-input"
             />
 
             <div className="filters">

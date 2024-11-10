@@ -3,6 +3,8 @@ body, html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
+
 }
 
 h1 {
@@ -24,6 +26,10 @@ h1 {
   z-index: 1000;
   width: 100%;
 }
+.home-page{
+  margin-left: 20px;
+  margin-right: 20px;
+}
 
 /* Title styling */
 .theTitle {
@@ -40,7 +46,7 @@ h1 {
 }
 
 .title-text {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: white;
 }
@@ -124,40 +130,30 @@ h1 {
   }
 }
 
-/* Property grid for responsive layout */
+.wishlist-page .property-grid {
+  width: 90%;
+}
+
 .property-grid {
   display: grid;
-  gap: 10px;
+  gap: 0px;
   justify-content: center;
   margin: 0 auto;
-  padding: 10px;
+  margin-top: 10px;
 }
 
-@media (min-width: 1200px) {
+
+@media (min-width: 1600px) {
   .property-grid {
     grid-template-columns: repeat(5, 1fr); /* 5 cards per row for very large screens */
-    max-width: 1600px;
+    max-width: 2000px;
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-  .property-grid {
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row for large screens */
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  .property-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row for medium screens */
-    max-width: 900px;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .property-grid {
     grid-template-columns: repeat(2, 1fr); /* 2 cards per row for small screens */
-    max-width: 600px;
+    max-width: 1000px;
   }
 
   .nav-sign-in-large {
@@ -215,7 +211,7 @@ h1 {
 
 .home-page,
 .wishlist-page {
-  padding: 5px;
+  padding: 0px;
   text-align: center;
 }
 
@@ -224,7 +220,7 @@ h1 {
   margin-bottom: 20px;
   font-size: 16px;
   width: 100%;
-  max-width: 500px;
+  max-width: 100px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
@@ -238,7 +234,7 @@ h1 {
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 850px; 
+  max-width: 800px; 
   margin: 0 auto;
 }
 
@@ -262,11 +258,11 @@ h1 {
 @media (min-width: 768px) {
   .filters {
     grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
-    padding: 15px;
-    gap: 15px;
+    padding: 5px;
+    gap: 5px;
   }
   .filters label {
-    font-size: 16px;
+    font-size: 12px;
   }
   .filters select {
     padding: 10px;
@@ -277,31 +273,31 @@ h1 {
 @media (min-width: 992px) {
   .filters {
     grid-template-columns: repeat(4, 1fr); /* Four columns for large screens */
-    padding: 20px;
+    padding: 10px;
     gap: 20px;
   }
   .filters label {
-    font-size: 18px;
+    font-size: 16px;
   }
   .filters select {
     padding: 12px;
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
 @media (min-width: 1200px) {
   .filters {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1000px;
-    padding: 25px;
-    gap: 25px;
+    max-width: 800px;
+    padding: 15px;
+    gap: 20px;
   }
   .filters label {
-    font-size: 20px;
+    font-size: 16px;
   }
   .filters select {
-    padding: 15px;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 12px;
   }
 }
 
@@ -323,8 +319,52 @@ h1 {
   text-align: center;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 411px) and (max-width: 480px) {
   .property-grid {
     grid-template-columns: 1fr; /* 1 card per row for very small screens */
+  }
+
+  .filters {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    padding: 10px;
+    gap: 5px;
+    margin: 0px 15px;
+  }
+
+}
+
+@media (max-width: 412px) {
+  .property-grid {
+    grid-template-columns: 1fr; /* 1 card per row for very small screens */
+  }
+}
+
+@media (min-width: 370px) and (max-width: 411px) {
+  .filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Base style */
+.search-input {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  width: 100%; /* Allows it to fill the container */
+  min-width: 400px; /* Initial max width for smaller screens */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+@media (max-width: 767px) {
+  .search-input {
+      min-width: 200px; /* Increase max-width for medium screens */
+  }
+}
+
+@media (max-width: 290px) {
+  .search-input {
+      min-width: 140px; /* Increase max-width for medium screens */
   }
 }

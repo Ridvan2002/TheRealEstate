@@ -47,34 +47,32 @@ function PropertyDetails({ listings, handleOpenAuthModal, onBuy }) {
     };
 
     return (
-        <div className="property-details-page">
-            <h1 className="property-title">{property.title}</h1>
-            <div className="details-container">
-                <img src={property.image} alt={property.title} className="main-image" />
-                <div className="image-gallery">
-                    {property.additionalImages && property.additionalImages.length > 3 && (
-                        <button className="nav-button" onClick={showPreviousImage} disabled={visibleImages === 0}>
-                            &uarr;
-                        </button>
-                    )}
-                    <div className="gallery-images">
-                        {property.additionalImages.slice(visibleImages, visibleImages + 3).map((imgSrc, index) => (
-                            <img 
-                                key={index} 
-                                src={imgSrc} 
-                                alt={`${property.title} - ${index + 1}`} 
-                                className="gallery-image"
-                                onClick={() => openLightbox(imgSrc)}
-                            />
-                        ))}
-                    </div>
-                    {property.additionalImages && property.additionalImages.length > 3 && (
-                        <button className="nav-button" onClick={showNextImage} disabled={visibleImages >= property.additionalImages.length - 3}>
-                            &darr;
-                        </button>
-                    )}
+<div className="property-details-page">
+    <h1 className="property-title">{property.title}</h1>
+    <div className="details-container">
+        <img src={property.image} alt={property.title} className="main-image" />
+        <div className="image-gallery-wrapper">
+            <button className="nav-button nav-button-top" onClick={showPreviousImage} disabled={visibleImages === 0}>
+                &uarr;
+            </button>
+            <div className="image-gallery">
+                <div className="gallery-images">
+                    {property.additionalImages.slice(visibleImages, visibleImages + 3).map((imgSrc, index) => (
+                        <img 
+                            key={index} 
+                            src={imgSrc} 
+                            alt={`${property.title} - ${index + 1}`} 
+                            className="gallery-image"
+                            onClick={() => openLightbox(imgSrc)}
+                        />
+                    ))}
                 </div>
             </div>
+            <button className="nav-button nav-button-bottom" onClick={showNextImage} disabled={visibleImages >= property.additionalImages.length - 3}>
+                &darr;
+            </button>
+        </div>
+    </div>
             <div className="property-info">
                 <p><strong>Price:</strong> {property.price}</p>
                 <p><strong>Address:</strong> {property.address}</p>
