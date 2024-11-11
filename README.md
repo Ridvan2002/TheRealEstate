@@ -27,7 +27,6 @@ The following documentation files are included in the project:
 - **Test_Cases.docx**: A comprehensive list of test cases used to validate the application's functionality.
 - **Test_Scenarios.docx**: Various scenarios documented to ensure the application's robustness under different conditions.
 - **Wireframes.pptx**: A PowerPoint presentation showcasing the wireframes of the application, providing a visual guide to the layout and design.
-- 
 
 ## Installation
 
