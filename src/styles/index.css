@@ -4,14 +4,13 @@ body, html {
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
-
 }
 
 h1 {
   font-size: 1.6rem;
   color: #333;
   text-align: center;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; /* Consistent font family */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 /* Navbar styling */
@@ -26,7 +25,9 @@ h1 {
   z-index: 1000;
   width: 100%;
 }
-.home-page{
+  /* this is code */
+
+.home-page {
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -60,18 +61,31 @@ h1 {
   transition: 0.3s;
 }
 
-.nav-links li {
-  margin: 0 10px;
+.nav-links.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #0077b5;
+  padding: 10px 0;
+  z-index: 1000;
 }
 
-/* Updated button styles */
+.nav-links li {
+  margin: 5px 0;
+  text-align: center;
+  width: 100%;
+}
+
 .nav-links li a,
 .btn-signin,
 .btn-signout {
   color: white;
   text-decoration: none;
   padding: 10px 20px;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   background-color: #0077b5;
   border: none;
@@ -86,19 +100,16 @@ h1 {
 .btn-signin:hover,
 .btn-signout:hover {
   background-color: #005fa3;
-  border-radius: 5px;
 }
 
-/* Added new sign-in styles */
-.nav-sign-in-large {
-  display: none; /* Hidden by default on mobile */
-}
-
+/* Sign-in button specific styling */
 .nav-sign-in {
-  display: block; /* Shown by default on mobile */
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
+/* Hamburger menu styling */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -117,61 +128,30 @@ h1 {
   transition: 0.3s;
 }
 
-/* Large screen adjustments */
+/* Adjustments for large screens */
 @media (min-width: 769px) {
+  .nav-links {
+    flex-direction: row;
+    position: static;
+    width: auto;
+    background-color: transparent;
+  }
+
   .nav-sign-in {
-    display: none; /* Hide mobile version */
-  }
-
-  .nav-sign-in-large {
-    display: block; /* Show desktop version */
-    margin-left: auto;
-    margin-right: 25px;
-  }
-}
-
-.wishlist-page .property-grid {
-  width: 90%;
-}
-
-.property-grid {
-  display: grid;
-  gap: 0px;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 10px;
-}
-
-@media (min-width: 1440px) {
-  .property-grid {
-    grid-template-columns: repeat(4, 1fr); /* 5 cards per row for very large screens */
-    max-width: 1800px;
-    width: 95%;
-  }
-}
-
-@media (min-width: 1840px) {
-  .property-grid {
-    grid-template-columns: repeat(5, 1fr); /* 5 cards per row for very large screens */
-    max-width: 1800px;
-  }
-}
-
-@media (max-width: 950px) {
-  .property-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for small screens */
-    max-width: 800px;
-  }
-
-  .nav-sign-in-large {
     display: none;
   }
 
-  .nav-sign-in {
-    display: block;
-    text-align: center;
+  .nav-sign-in-large {
+    margin-right: 20px;
   }
 
+  .hamburger {
+    display: none;
+  }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
@@ -179,14 +159,6 @@ h1 {
   /* Hide nav links by default */
   .nav-links {
     display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: #0077b5;
-    padding: 10px 0;
-    z-index: 1000;
   }
 
   /* Show nav links when hamburger menu is active */
@@ -194,10 +166,8 @@ h1 {
     display: flex;
   }
 
-  .nav-links li {
-    margin: 5px 0;
-    width: 100%;
-    text-align: center;
+  .nav-sign-in-large {
+    display: none;
   }
 
   /* Center the title on mobile */
@@ -287,9 +257,10 @@ h1 {
   text-align: center;
 }
 
+/* Responsive adjustments */
 @media (max-width: 580px) {
   .property-grid {
-    grid-template-columns: 1fr; /* 1 card per row for very small screens */
+    grid-template-columns: 1fr;
   }
 
   .filters {
@@ -297,11 +268,11 @@ h1 {
     margin: 0px 15px;
   }
 }
-  @media (min-width: 481px) and (max-width: 950px) {
-    .filters {
-      grid-template-columns: repeat(2, 1fr);
-    }
 
+@media (min-width: 481px) and (max-width: 950px) {
+  .filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Base style */
@@ -309,20 +280,20 @@ h1 {
   padding: 10px;
   margin-bottom: 20px;
   font-size: 16px;
-  width: 100%; /* Allows it to fill the container */
-  min-width: 400px; /* Initial max width for smaller screens */
+  width: 100%;
+  min-width: 200px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
 
 @media (max-width: 480px) {
   .search-input {
-      min-width: 200px; /* Increase max-width for medium screens */
+      min-width: 200px;
   }
 }
 
 @media (max-width: 290px) {
   .search-input {
-      min-width: 140px; /* Increase max-width for medium screens */
+      min-width: 140px;
   }
 }
