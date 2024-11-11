@@ -35,10 +35,14 @@ function Auth({ isOpen, onClose }) {
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-        <div className="auth-title">
-          <span className="welcome-text">Welcome To</span>
-          <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
-          <h2 className="title-text">TheRealEstate</h2>
+      <div className="auth-title">
+          <div className="welcome-row">
+            <span className="welcome-text">Welcome To</span>
+          </div>
+          <div className="title-row">
+            <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
+            <h2 className="title-text">TheRealEstate</h2>
+          </div>
         </div>
         <div className="auth-header">
           <button 

@@ -34,9 +34,10 @@
 
 .property-actions {
     display: flex;
+    flex-direction: column; 
     justify-content: space-around;
     margin-top: 20px;
-    gap: 0px; /* Optional: Adds space between buttons */
+    gap: 15px; /* Optional: Adds space between buttons */
     margin-bottom: 10px;
 }
 
@@ -96,22 +97,13 @@
         max-width: 90%; /* Allows card to shrink on smaller screens */
         margin: 10px auto; /* Centers card on smaller screens */
     }
-    
-    .property-details h2 {
-        font-size: 1.4rem;
-    }
-
-    .property-details p {
-        font-size: 1.2rem;
-    }
 
     .property-actions {
         flex-direction: column; 
         margin-top: 10px;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .btn-primary{
         padding: 10px 0px;
         width: 100%;
         margin-top: 10px;
@@ -122,23 +114,5 @@
 @media (max-width: 425px) {
     .property-card {
         max-width: 350px; /* Ensures it doesn't exceed 350px on very small screens */
-    }
-
-    .property-details h2 {
-        font-size: 1.2rem;
-    }
-
-    .property-details p {
-        font-size: 1.0rem;
-    }
-
-    .property-actions {
-        flex-direction: column;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
-        margin-top: 10px;
     }
 }

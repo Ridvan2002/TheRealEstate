@@ -15,7 +15,7 @@
     background-color: white;
     padding: 20px;
     border-radius: 8px;
-    width: 400px;
+    width: 50%;
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
@@ -46,6 +46,12 @@
     font-weight: bold;
     color: #333;
     margin: 0;
+}
+
+.title-row {
+    display: flex;
+    flex-direction: row; /* Use flex-direction to stack elements vertically */
+    align-items: center; /* Center the items horizontally if needed */
 }
 
 .auth-header {
@@ -115,4 +121,31 @@
 
 .forgot-password a:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .auth-modal {
+        width: 70%; /* Takes up 90% of the screen width */
+    }
+}
+
+@media (max-width:850px) {
+    .auth-modal {
+        width: 70%; /* Takes up 90% of the screen width */
+    }
+}
+@media (max-width: 551px) {
+
+    .auth-title {
+        display: flex;
+        flex-direction: column; /* Use flex-direction to stack elements vertically */
+        align-items: center; /* Center the items horizontally if needed */
+    }
+}
+
+@media (min-width: 1280px) {
+    .auth-modal{
+    max-width: 600px;
+    }
+
 }
