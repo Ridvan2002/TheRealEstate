@@ -3,7 +3,7 @@
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 15px;
+    margin: 15px 0px;
     background-color: white;
     text-align: center;
     transition: max-width 0.3s ease;
@@ -82,13 +82,18 @@
 .property-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 27px;
     justify-content: center;
     margin: 0 auto;
     padding: 0px;
     width: 100%;
 }
-
+@media (min-width: 1700px) {
+    .property-grid{
+        grid-template-columns: repeat(5, minmax(300px, 1fr));
+        max-width: 1650px;
+    }
+}
 @media (max-width: 768px) {
     .property-card {
         max-width: 90%; 

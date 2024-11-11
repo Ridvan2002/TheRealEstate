@@ -289,17 +289,15 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
                     <span className="bar"></span>
                     <span className="bar"></span>
                 </button>
-
-                {/* Nav links, visible based on isMenuOpen */}
                 <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <li><Link to="/" onClick={() => handleMenuLinkClick('/')}>Home</Link></li>
                     <li><a href="#" onClick={(e) => { e.preventDefault(); handleMenuLinkClick('/wishlist', true); }}>Wishlist</a></li>
                     <li><a href="#" onClick={(e) => { e.preventDefault(); handleMenuLinkClick('/list-property', true); }}>Sell</a></li>
                     <li className="nav-sign-in">
                         {isLoggedIn ? (
-                            <button onClick={logout} className="btn-signout">Sign out</button>
+                            <a onClick={logout} className="btn-signout">Sign out</a>
                         ) : (
-                            <button onClick={() => handleOpenAuthModal()} className="btn-signin">Sign in</button>
+                            <a onClick={() => handleOpenAuthModal()} className="btn-signin">Sign in</a>
                         )}
                     </li>
                 </ul>

@@ -43,7 +43,7 @@ h1 {
 }
 
 .title-text {
-  font-size: 1.6rem;
+  font-size: 1.9rem;
   font-weight: bold;
   color: white;
 }
@@ -61,36 +61,51 @@ h1 {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 60px;
+  top: 50px;
   left: 0;
   width: 100%;
   background-color: #0077b5;
   padding: 10px 0;
+  gap: 20px;
   z-index: 1000;
 }
 
-.nav-links li {
-  margin: 5px 0;
-  text-align: center;
-  width: 100%;
+.nav-sign-in-large .btn-signin,
+.nav-sign-in-large .btn-signout {
+  font-size: 1.6rem;
+  margin-top: 7px;
+  margin-right: 35px;
 }
+
 
 .nav-links li a,
 .btn-signin,
 .btn-signout {
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  font-size: 1.7rem;
-  font-weight: bold;
-  background-color: #0077b5;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  display: block;
-  transition: background-color 0.3s ease;
-  text-align: center;
+    color: white;
+    margin: 5px 0;
+    text-decoration: none;
+    padding: 0px 15px;
+    font-size: 1.7rem;
+    font-weight: bold; 
+    background-color: #0077b5;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-right: 25px;
 }
+
+.search-input {
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 18px !important;
+  width: 100%;
+  min-width: 500px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+} 
 
 .nav-links li a:hover,
 .btn-signin:hover,
@@ -122,7 +137,7 @@ h1 {
   transition: 0.3s;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1000px) {
   .nav-links {
     flex-direction: row;
     position: static;
@@ -134,22 +149,32 @@ h1 {
     display: none;
   }
 
-  .nav-sign-in-large {
-    margin-right: 20px;
-  }
-
   .hamburger {
     display: none;
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1000px) and (max-width: 1150px){
+    .nav-links li a,
+    .btn-signin,
+    .btn-signout {
+        padding: 0px 2px;
+    }
+}
+
+@media (max-width: 999px) {
   .hamburger {
     display: flex;
   }
 
   .nav-links {
     display: none;
+  }
+  .nav-links li a,
+  .btn-signin,
+  .btn-signout {
+    /* font-weight: normal; */
+    margin-top: 10px;
   }
 
   .nav-links.active {
@@ -160,11 +185,17 @@ h1 {
     display: none;
   }
 
+  .nav-sign-in {
+    display: flex;
+  }
+  
+
   .theTitle {
     display: flex;
     justify-content: center;
     width: 100%;
   }
+  
 }
 
 .wishlist-page h1 {
@@ -198,7 +229,7 @@ h1 {
   padding: 10px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  max-width: 800px; 
+  max-width: 1200px; 
   margin: 0 auto;
 }
 
@@ -218,14 +249,6 @@ h1 {
   margin-top: 10px;
 }
 
-@media (min-width: 1200px) {
-  .filters {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .filters label {
-    max-width: 200px;
-  }
-}
 
 .purchase-confirmation-container {
   display: flex;
@@ -243,41 +266,37 @@ h1 {
   text-align: center;
 }
 
-@media (max-width: 580px) {
-  .property-grid {
-    grid-template-columns: 1fr;
+
+@media (min-width: 670px) and (max-width: 999px) {
+  .filters {
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(2, minmax(20px, 500px));
+
+  }
+}
+
+@media (max-width: 669px) {
+  .search-input {
+    min-width: 420px; 
   }
 
   .filters {
     grid-template-columns: repeat(1, 1fr);
-    margin: 0px 15px;
+    margin: 0 auto;
+    max-width: 420px;
+  }
+
+}
+@media (max-width: 490px) {
+  .search-input {
+      min-width: 290px;
+  }
+  .title-text {
+    font-size: 1.6rem;
   }
 }
-
-@media (min-width: 481px) and (max-width: 950px) {
-  .filters {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.search-input {
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  width: 100%;
-  min-width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-@media (max-width: 480px) {
+@media (max-width: 360px) {
   .search-input {
       min-width: 200px;
-  }
-}
-
-@media (max-width: 290px) {
-  .search-input {
-      min-width: 140px;
   }
 }
