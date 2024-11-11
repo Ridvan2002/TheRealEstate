@@ -9,8 +9,8 @@ function PropertyDetails({ listings, handleOpenAuthModal, onBuy }) {
     const { isLoggedIn } = useAuth();
     const navigate = useNavigate();
 
-    const [visibleImages, setVisibleImages] = useState(0); // State to track visible images
-    const [lightboxImage, setLightboxImage] = useState(null); // State for lightbox image
+    const [visibleImages, setVisibleImages] = useState(0); 
+    const [lightboxImage, setLightboxImage] = useState(null); 
 
     if (!property) {
         return <p>Property not found.</p>;
@@ -24,14 +24,12 @@ function PropertyDetails({ listings, handleOpenAuthModal, onBuy }) {
         }
     };
 
-    // Function to show the next image in the gallery
     const showNextImage = () => {
         if (visibleImages < property.additionalImages.length - 3) {
             setVisibleImages(visibleImages + 1);
         }
     };
 
-    // Function to show the previous image in the gallery
     const showPreviousImage = () => {
         if (visibleImages > 0) {
             setVisibleImages(visibleImages - 1);

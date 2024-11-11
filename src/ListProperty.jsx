@@ -21,12 +21,12 @@ function ListProperty({ addListing }) {
         const { name, value, type, files } = e.target;
         if (type === 'file') {
             if (name === 'mainImage') {
-                setFormData({ ...formData, [name]: files[0] }); // Store the first file selected
+                setFormData({ ...formData, [name]: files[0] }); 
             } else if (name === 'additionalImages') {
-                setFormData({ ...formData, [name]: Array.from(files) }); // Store the list of files for additional images
+                setFormData({ ...formData, [name]: Array.from(files) }); 
             }
         } else if (name === 'price') {
-            const formattedPrice = formatPrice(value.replace(/[^0-9]/g, '')); // Remove non-digits
+            const formattedPrice = formatPrice(value.replace(/[^0-9]/g, ''));
             setFormData({ ...formData, [name]: formattedPrice });
         } else {
             setFormData({ ...formData, [name]: value });

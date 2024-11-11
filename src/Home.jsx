@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropertyCard from './PropertyCard';
 
-function Home({ listings, addToWishlist, handleOpenAuthModal }) { // Added handleOpenAuthModal as a prop
+function Home({ listings, addToWishlist, handleOpenAuthModal }) { 
     const [searchQuery, setSearchQuery] = useState('');
     const [filters, setFilters] = useState({
         priceRange: '',
@@ -108,7 +108,7 @@ function Home({ listings, addToWishlist, handleOpenAuthModal }) { // Added handl
                             key={index}
                             property={property}
                             addToWishlist={addToWishlist}
-                            handleOpenAuthModal={handleOpenAuthModal} // Pass handleOpenAuthModal down
+                            handleOpenAuthModal={handleOpenAuthModal}
                             isWishlist={false}
                         />
                     ))}

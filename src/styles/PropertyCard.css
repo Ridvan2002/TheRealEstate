@@ -7,10 +7,9 @@
     background-color: white;
     text-align: center;
     transition: max-width 0.3s ease;
-    max-width: 100%; /* Ensures it fills the grid container */
+    max-width: 100%; 
 }
 
-/* Adjusting image height for responsive design */
 .property-image {
     width: 100%;
     height: 200px;
@@ -37,7 +36,7 @@
     flex-direction: column; 
     justify-content: space-around;
     margin-top: 20px;
-    gap: 15px; /* Optional: Adds space between buttons */
+    gap: 15px; 
     margin-bottom: 10px;
 }
 
@@ -80,7 +79,6 @@
     background-color: #c82333;
 }
 
-/* Responsive grid layout for property cards */
 .property-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -91,11 +89,10 @@
     width: 100%;
 }
 
-/* Specific styles for screen widths below 768px */
 @media (max-width: 768px) {
     .property-card {
-        max-width: 90%; /* Allows card to shrink on smaller screens */
-        margin: 10px auto; /* Centers card on smaller screens */
+        max-width: 90%; 
+        margin: 10px auto; 
     }
 
     .property-actions {
@@ -110,9 +107,8 @@
     }
 }
 
-/* Further adjustments for extra small screens (below 425px) */
 @media (max-width: 425px) {
     .property-card {
-        max-width: 350px; /* Ensures it doesn't exceed 350px on very small screens */
+        max-width: 350px;
     }
 }

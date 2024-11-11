@@ -67,11 +67,11 @@
 }
 
 .nav-button-top {
-    margin-bottom: 10px; /* Adds space below the top button */
+    margin-bottom: 10px; 
 }
 
 .nav-button-bottom {
-    margin-top: 10px; /* Adds space above the bottom button */
+    margin-top: 10px;
 }
 .property-info {
     max-width: 720px;
@@ -139,13 +139,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 15px; /* Reduces the gap between elements */
-        padding: 10px; /* Adjust padding to fit mobile */
+        gap: 15px; 
+        padding: 10px; 
     }
 
     .main-image {
-        width: 100%; /* Make the image responsive */
-        max-width: 600px; /* Limit the max-width to avoid too large images on smaller screens */
+        width: 100%; 
+        max-width: 600px;
         height: auto;
         border-radius: 8px;
     }
@@ -154,21 +154,21 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between; /* Space out the navigation buttons */
-        width: 100%; /* Make sure it fits within the screen width */
-        max-width: 400px; /* Keep it consistent with the main image */
+        justify-content: space-between; 
+        width: 100%;
+        max-width: 400px; 
         gap: 5px;
     }
 
     .gallery-images {
         flex-direction: row;
         gap: 10px;
-        overflow-x: auto; /* Allow horizontal scroll for extra images */
-        width: 100%; /* Occupy the full width */
+        overflow-x: auto;
+        width: 100%; 
     }
 
     .gallery-image {
-        width: 100px; /* Adjust size for mobile */
+        width: 100px;
         height: 100px;
     }
 
@@ -203,26 +203,26 @@
 @media (min-width: 425px) and (max-width: 830){
     
     .main-image {
-        width: 100%; /* Make the image responsive */
-        max-width: 600px; /* Limit the max-width to avoid too large images on smaller screens */
+        width: 100%;
+        max-width: 600px;
         height: auto;
         border-radius: 8px;
     }
     .gallery-image {
-        width: 105px; /* Adjust size for mobile */
+        width: 105px;
         height: 60px;
     }
 }
 @media (max-width: 425px) {
     .gallery-image {
-        width: 75px; /* Adjust size for mobile */
+        width: 75px;
         height: 70px;
     }
 }
 
 @media (max-width: 360px) {
     .gallery-image {
-        width: 55px; /* Adjust size for mobile */
+        width: 55px; 
         height: 60px;
     }
 }

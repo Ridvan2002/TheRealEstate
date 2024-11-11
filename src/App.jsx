@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom'; 
 import Home from './Home'; 
 import ListProperty from './ListProperty';
 import Wishlist from './Wishlist';
@@ -236,12 +236,12 @@ function App() {
 function AppContent({ listings, setListings, wishlist, addToWishlist, removeFromWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath, basePath }) {
     const { isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
-    const [isMenuOpen, setMenuOpen] = useState(false); // State to control the menu visibility
+    const [isMenuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
     const handleMenuLinkClick = (path, requiresAuth) => {
-        setMenuOpen(false); // Close the menu on link click
+        setMenuOpen(false); 
         if (requiresAuth && !isLoggedIn) {
             handleOpenAuthModal(path);
         } else {
@@ -284,8 +284,6 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
                     <img src={`${basePath}/house.png`} alt="house icon" className="title-icon" />
                     <span className="title-text">TheRealEstate</span>
                 </div>
-
-                {/* Hamburger icon for mobile */}
                 <button className="hamburger" onClick={toggleMenu}>
                     <span className="bar"></span>
                     <span className="bar"></span>

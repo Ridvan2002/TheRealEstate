@@ -30,7 +30,6 @@ function Buy() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    // Add logic here to handle the submission, such as sending data to a backend service.
   };
 
   return (
