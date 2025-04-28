@@ -1,51 +1,82 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from "react";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "firebase/auth";
 
 const AuthContext = createContext();
-
 export function useAuth() {
   return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUserData, setCurrentUserData] = useState(null); // <-- ADD this
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setIsLoggedIn(!!user);
+      setCurrentUser(user);
+
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          setCurrentUserData(userDoc.data());
+        }
+      } else {
+        setCurrentUserData(null);
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   const login = (email, password, onClose) => {
-    const user = registeredUsers.find(user => user.email === email && user.password === password);
-    
-    if (user) {
-    //   console.log('Login successful!');
-      alert('Successfully logged in!');
-      setIsLoggedIn(true);
-      onClose();
-    } else {
-    //   console.log('Invalid email or password');
-      alert('Invalid email or password');
-    }
+    return signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Successfully logged in!");
+        onClose();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const register = (email, password, onClose) => {
-    const existingUser = registeredUsers.find(user => user.email === email);
-    
-    if (existingUser) {
-    //   console.log('User already registered');
-      alert('User already registered');
-    } else {
-      setRegisteredUsers([...registeredUsers, { email, password }]);
-      setIsLoggedIn(true);  // Automatically log in after registration
-      alert('Successfully registered!');
-    //   console.log('Registration successful');
-      onClose();
-    }
+    return createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          firstName: "",   // you can collect this in your registration form
+          lastName: "",    // same here
+          createdAt: new Date(),
+          wishlist: [],
+          savedProperties: [],
+        });
+      })
+      .then(() => {
+        alert("Successfully registered!");
+        onClose();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   const logout = () => {
-    // console.log('Logging out...');
-    setIsLoggedIn(false);
+    return signOut(auth).then(() => {
+      alert("Logged out");
+    });
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, register, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, currentUser, currentUserData, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

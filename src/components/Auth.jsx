@@ -6,9 +6,10 @@ function Auth({ isOpen, onClose }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const { login, register } = useAuth();
 
-  // Define basePath here as well
   const isProduction = process.env.NODE_ENV === 'production';
   const basePath = isProduction ? '/TheRealEstate' : '';
 
@@ -18,16 +19,20 @@ function Auth({ isOpen, onClose }) {
     if (isLogin) {
       login(email, password, onClose);
     } else {
-      register(email, password, onClose);
+      register(email, password, firstName, lastName, onClose);
     }
-    setEmail('');
-    setPassword('');
+      setEmail('');
+      setPassword('');
+      setFirstName('');
+      setLastName('');
   };
 
   const handleToggle = () => {
     setIsLogin(!isLogin);
     setEmail('');
     setPassword('');
+    setFirstName('');
+    setLastName('');
   };
 
   if (!isOpen) return null;
@@ -35,7 +40,7 @@ function Auth({ isOpen, onClose }) {
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
-      <div className="auth-title">
+        <div className="auth-title">
           <div className="welcome-row">
             <span className="welcome-text">Welcome To</span>
           </div>
@@ -44,21 +49,34 @@ function Auth({ isOpen, onClose }) {
             <h2 className="title-text">TheRealEstate</h2>
           </div>
         </div>
+
         <div className="auth-header">
-          <button 
-            onClick={handleToggle} 
-            className={isLogin ? 'active' : ''}
-          >
-            Sign in
-          </button>
-          <button 
-            onClick={handleToggle} 
-            className={!isLogin ? 'active' : ''}
-          >
-            New account
-          </button>
+          <button onClick={handleToggle} className={isLogin ? 'active' : ''}>Sign in</button>
+          <button onClick={handleToggle} className={!isLogin ? 'active' : ''}>New account</button>
         </div>
+
         <form onSubmit={handleSubmit} className="auth-form">
+          {/* Only show First Name and Last Name if REGISTERING */}
+          {!isLogin && (
+            <>
+              <label>First Name</label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Enter first name"
+                required
+              />
+              <label>Last Name</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Enter last name"
+                required
+              />
+            </>
+          )}
           <label>Email</label>
           <input
             type="email"
@@ -79,6 +97,7 @@ function Auth({ isOpen, onClose }) {
             {isLogin ? 'Sign in' : 'Register'}
           </button>
         </form>
+
         {isLogin && (
           <div className="forgot-password">
             <a href="#">Forgot your password?</a>

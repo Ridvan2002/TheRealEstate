@@ -94,12 +94,21 @@
         max-width: 1650px;
     }
 }
-@media (max-width: 768px) {
-    .property-card {
-        max-width: 90%; 
-        margin: 10px auto; 
-    }
 
+@media (min-width: 994px) and (max-width: 1699px) {
+    .property-grid {
+      grid-template-columns: repeat(3, minmax(300px, 1fr));
+      max-width: 1020px; 
+      margin: 20 auto;
+    }
+  }
+
+@media (max-width: 994px) {
+    .property-card {
+        max-width: 350px; 
+        margin: 0px auto; 
+    }
+    
     .property-actions {
         flex-direction: column; 
         margin-top: 10px;

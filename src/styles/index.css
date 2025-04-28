@@ -70,21 +70,28 @@ h1 {
   z-index: 1000;
 }
 
-.nav-sign-in-large .btn-signin,
-.nav-sign-in-large .btn-signout {
+.nav-user  {
+  display: flex;
+  align-items: center;
   font-size: 1.6rem;
-  margin-top: 7px;
-  margin-right: 35px;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 40px; 
+}
+.user-name {
+  background: none;  
+  cursor: default;   
+  padding: 0;        
 }
 
-
-.nav-links li a,
-.btn-signin,
-.btn-signout {
+.nav-links li a {
     color: white;
     margin: 5px 0;
     text-decoration: none;
-    padding: 0px 15px;
+    padding: 0px 0px;
     font-size: 1.7rem;
     font-weight: bold; 
     background-color: #0077b5;
@@ -107,17 +114,10 @@ h1 {
   border-radius: 5px;
 } 
 
-.nav-links li a:hover,
-.btn-signin:hover,
-.btn-signout:hover {
+.nav-links li a:hover {
   background-color: #005fa3;
 }
 
-.nav-sign-in {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
 
 .hamburger {
   display: none;
@@ -154,15 +154,15 @@ h1 {
   }
 }
 
-@media (min-width: 1000px) and (max-width: 1150px){
+/* @media (min-width: 1000px) and (max-width: 1150px){
     .nav-links li a,
     .btn-signin,
     .btn-signout {
         padding: 0px 2px;
     }
-}
+} */
 
-@media (max-width: 999px) {
+@media (max-width: 1100px) {
   .hamburger {
     display: flex;
   }
@@ -180,7 +180,7 @@ h1 {
     display: flex;
   }
 
-  .nav-sign-in-large {
+  .nav-user {
     display: none;
   }
 

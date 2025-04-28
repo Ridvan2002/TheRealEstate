@@ -8,6 +8,8 @@ import Buy from './Buy';
 import PrivateRoute from './components/PrivateRoute';
 import Auth from './components/Auth'; 
 import { AuthProvider, useAuth } from './context/AuthContext'; 
+import { doc, updateDoc, arrayUnion, arrayRemove  } from "firebase/firestore";
+import { auth, db } from "./firebase/firebase";
 
 
 function App() {
@@ -234,7 +236,7 @@ function App() {
 }
 
 function AppContent({ listings, setListings, wishlist, addToWishlist, removeFromWishlist, isAuthModalOpen, handleOpenAuthModal, handleCloseAuthModal, redirectPath, basePath }) {
-    const { isLoggedIn, logout } = useAuth();
+    const { currentUser, currentUserData, isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
     const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -253,11 +255,38 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
         setListings((prevListings) => [...prevListings, newListing]);
     };
 
-    const handleAddToWishlist = (property) => {
+    const handleAddToWishlist = async (property) => {
         if (!isLoggedIn) {
             handleOpenAuthModal('/wishlist');
         } else {
-            addToWishlist(property);
+            try {
+                // Add locally
+                addToWishlist(property);
+    
+                // Add to Firestore
+                const userRef = doc(db, "users", currentUser.uid);
+                await updateDoc(userRef, {
+                    wishlist: arrayUnion(property)
+                });
+    
+                console.log("Property added to Firestore wishlist!");
+            } catch (error) {
+                console.error("Failed to add to Firestore wishlist:", error);
+            }
+        }
+    };
+
+    
+    const handleRemoveFromWishlist = async (property) => {
+        try {
+            removeFromWishlist(property); // Local
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, {
+                wishlist: arrayRemove(property)
+            });
+            console.log("Property removed from Firestore wishlist!");
+        } catch (error) {
+            console.error("Failed to remove from Firestore wishlist:", error);
         }
     };
 
@@ -293,19 +322,18 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
                     <li><Link to="/" onClick={() => handleMenuLinkClick('/')}>Home</Link></li>
                     <li><a href="#" onClick={(e) => { e.preventDefault(); handleMenuLinkClick('/wishlist', true); }}>Wishlist</a></li>
                     <li><a href="#" onClick={(e) => { e.preventDefault(); handleMenuLinkClick('/list-property', true); }}>Sell</a></li>
-                    <li className="nav-sign-in">
-                        {isLoggedIn ? (
-                            <a onClick={logout} className="btn-signout">Sign out</a>
-                        ) : (
-                            <a onClick={() => handleOpenAuthModal()} className="btn-signin">Sign in</a>
-                        )}
-                    </li>
-                </ul>
-                <div className="nav-sign-in-large">
                     {isLoggedIn ? (
-                        <button onClick={logout} className="btn-signout">Sign out</button>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); logout(); }}>Sign out</a></li>
                     ) : (
-                        <button onClick={() => handleOpenAuthModal()} className="btn-signin">Sign in</button>
+                        <li><a href="#" onClick={(e) => { e.preventDefault(); handleOpenAuthModal(); }}>Sign in</a></li>
+                    )}
+                </ul>
+
+                <div className="nav-user">
+                    {isLoggedIn && (
+                        <div className="user-info">
+                            <span className="user-name">Hi, {currentUserData?.firstName || 'User'}!</span>
+                        </div>
                     )}
                 </div>
             </nav>
@@ -330,7 +358,7 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
                     path="/wishlist" 
                     element={
                         <PrivateRoute openAuthModal={handleOpenAuthModal}>
-                            <Wishlist wishlist={wishlist} removeFromWishlist={removeFromWishlist} />
+                            <Wishlist wishlist={wishlist} removeFromWishlist={handleRemoveFromWishlist} />
                         </PrivateRoute>
                     }
                 />

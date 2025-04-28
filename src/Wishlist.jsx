@@ -2,6 +2,10 @@ import React from 'react';
 import PropertyCard from './PropertyCard';
 
 function Wishlist({ wishlist, removeFromWishlist }) {
+    const handleRemove = (property) => {
+        removeFromWishlist(property);
+    };
+
     return (
         <div className="wishlist-page">
             <h1>Your Wishlist</h1>
@@ -11,8 +15,8 @@ function Wishlist({ wishlist, removeFromWishlist }) {
                         <PropertyCard
                             key={index}
                             property={property}
-                            removeFromWishlist={removeFromWishlist}
-                            isWishlist={true} 
+                            removeFromWishlist={() => handleRemove(property)}
+                            isWishlist={true}
                         />
                     ))}
                 </div>
