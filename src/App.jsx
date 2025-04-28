@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom'; 
 import Home from './Home'; 
 import ListProperty from './ListProperty';
@@ -8,7 +8,7 @@ import Buy from './Buy';
 import PrivateRoute from './components/PrivateRoute';
 import Auth from './components/Auth'; 
 import { AuthProvider, useAuth } from './context/AuthContext'; 
-import { doc, updateDoc, arrayUnion, arrayRemove  } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayUnion, arrayRemove  } from "firebase/firestore";
 import { auth, db } from "./firebase/firebase";
 
 
@@ -239,6 +239,29 @@ function AppContent({ listings, setListings, wishlist, addToWishlist, removeFrom
     const { currentUser, currentUserData, isLoggedIn, logout } = useAuth();
     const navigate = useNavigate();
     const [isMenuOpen, setMenuOpen] = useState(false);
+
+    useEffect(() => {
+        const fetchWishlist = async () => {
+          if (currentUser) {
+            try {
+              const userRef = doc(db, "users", currentUser.uid);
+              const userSnap = await getDoc(userRef);
+    
+              if (userSnap.exists()) {
+                const userData = userSnap.data();
+                if (userData.wishlist) {
+                  setWishlist(userData.wishlist);
+                }
+              }
+            } catch (error) {
+              console.error("Error fetching wishlist:", error);
+            }
+          }
+        };
+    
+        fetchWishlist();
+    }, [currentUser]);
+    
 
     const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
